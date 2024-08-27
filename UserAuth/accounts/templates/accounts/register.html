@@ -1,0 +1,50 @@
+<!-- templates/accounts/register.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static 'css/register.css' %}" />
+  </head>
+  <body>
+    <div class="container img-fluid">
+      <h2>Register</h2>
+      <form method="POST">
+        {% csrf_token %}
+        <label for="id_username">Username:</label>
+        <input
+          type="text"
+          name="username"
+          id="id_username"
+          value="{{ form.username.value }}"
+        />
+        {% if form.username.errors %}
+        <label class="error">{{ form.username.errors.0 }}</label>
+        {% endif %}
+
+        <!-- Email -->
+        <label for="id_email">Email:</label>
+        <input
+          type="email"
+          name="email"
+          id="id_email"
+          value="{{ form.email.value }}"
+        />
+        {% if form.email.errors %}
+        <label class="error">{{ form.email.errors.0 }}</label>
+        {% endif %}
+
+        <!-- Password -->
+        <label for="id_password">Password:</label>
+        <input type="password" name="password" id="id_password" />
+        {% if form.password.errors %}
+        <label class="error">{{ form.password.errors.0 }}</label>
+        {% endif %}
+
+        <button type="submit">Register</button>
+      </form>
+    </div>
+  </body>
+</html>
